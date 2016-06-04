@@ -1,5 +1,7 @@
 {
 	"Version": 0.2,
 	"Dependencies": {
+		"github.com/itsabot/plugin_weather": "*",
+		"github.com/itsabot/twilio": "*"
 	}
 }
