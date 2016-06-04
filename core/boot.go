@@ -156,9 +156,9 @@ func NewServer() (r *httprouter.Router, err error) {
 // boot. In development, this step is repeated on each server HTTP request prior
 // to serving any assets.
 func compileAssets() error {
-	p := filepath.Join("cmd", "compileassets.sh")
+	p := strings.Join([]string{"cmd", "compileassets.sh"},"/")
 	outC, err := exec.
-		Command("/bin/sh", "-c", p).
+		Command("bash","-c",p).
 		CombinedOutput()
 	if err != nil {
 		log.Debug(string(outC))

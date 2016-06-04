@@ -297,7 +297,7 @@ func installPlugins() {
 	// Fetch all plugins
 	l.Info("Fetching", len(plugins.Dependencies), "plugins...")
 	outC, err := exec.
-		Command("/bin/sh", "-c", "go get ./...").
+		Command("go","get","./...").
 		CombinedOutput()
 	if err != nil {
 		l.Info(string(outC))
@@ -321,7 +321,7 @@ func installPlugins() {
 					url)
 				c := fmt.Sprintf("git -C %s checkout %s", p, version)
 				outB, errB = exec.
-					Command("/bin/sh", "-c", c).
+					Command(c).
 					CombinedOutput()
 				if errB != nil {
 					l.Debug(string(outB))
@@ -372,7 +372,7 @@ func installPlugins() {
 	// versions, and install the plugins
 	l.Info("Installing plugins...")
 	outC, err = exec.
-		Command("/bin/sh", "-c", "go get ./...").
+		Command("go","get","./...").
 		CombinedOutput()
 	if err != nil {
 		l.Info(string(outC))
@@ -402,7 +402,7 @@ func updatePlugins() {
 		}
 		l.Infof("Updating %s...\n", path)
 		outC, err := exec.
-			Command("/bin/sh", "-c", "go get -u "+path).
+			Command("go","get","-u",path).
 			CombinedOutput()
 		if err != nil {
 			l.Info(string(outC))
@@ -416,7 +416,7 @@ func updatePlugins() {
 
 func updateGlockfileAndInstall(l *log.Logger) {
 	outC, err := exec.
-		Command("/bin/sh", "-c", `pwd | sed "s|$GOPATH/src/||"`).
+		Command("bash", "-c", `pwd | sed "s|$GOPATH/src/||"`).
 		CombinedOutput()
 	if err != nil {
 		l.Info(string(outC))
@@ -425,8 +425,9 @@ func updateGlockfileAndInstall(l *log.Logger) {
 
 	// Update plugin dependency versions in GLOCKFILE
 	p := string(outC)
+	l.Debug(p)
 	outC, err = exec.
-		Command("/bin/sh", "-c", "glock save "+p).
+		Command("bash", "-c","glock save "+p).
 		CombinedOutput()
 	if err != nil {
 		l.Info(string(outC))
@@ -434,7 +435,7 @@ func updateGlockfileAndInstall(l *log.Logger) {
 	}
 
 	outC, err = exec.
-		Command("/bin/sh", "-c", "go install").
+		Command("go","install").
 		CombinedOutput()
 	if err != nil {
 		l.Info(string(outC))
