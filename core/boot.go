@@ -19,6 +19,7 @@ import (
 	"github.com/itsabot/abot/shared/datatypes"
 	"github.com/itsabot/abot/shared/interface/email"
 	"github.com/itsabot/abot/shared/interface/sms"
+	"github.com/itsabot/abot/shared/interface/messenger"
 	"github.com/jbrukh/bayesian"
 	"github.com/jmoiron/sqlx"
 	"github.com/julienschmidt/httprouter"
@@ -30,6 +31,7 @@ var ner classifier
 var offensive map[string]struct{}
 var smsConn *sms.Conn
 var emailConn *email.Conn
+var messengerConn *messenger.Conn
 var conf = &PluginJSON{Dependencies: map[string]string{}}
 var pluginsGo = []dt.PluginConfig{}
 var envLoaded bool
@@ -139,6 +141,18 @@ func NewServer() (r *httprouter.Router, err error) {
 		}
 	} else {
 		log.Debug("no email drivers imported")
+	}
+	
+	// Open a connection to an messenger service
+	if len(messenger.Drivers()) > 0 {
+		drv := messenger.Drivers()[0]
+		messengerConn, err = messenger.Open(drv, r)
+		if err != nil {
+			log.Info("failed to open messenger driver connection", drv,
+				err)
+		}
+	} else {
+		log.Debug("no messenger drivers imported")
 	}
 
 	// Send any scheduled events on boot and every minute
