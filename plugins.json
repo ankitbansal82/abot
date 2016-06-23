@@ -4,7 +4,6 @@
 	"Version": 0.2,
 	"ImportPath": "github.com/itsabot/abot",
 	"Dependencies": {
-		"github.com/itsabot/plugin_weather": "*",
-		"github.com/itsabot/twilio": "*"
+		"github.com/itsabot/plugin_weather": "*"
 	}
 }

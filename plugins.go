@@ -3,5 +3,16 @@ package main
 
 import (
 	_ "github.com/itsabot/plugin_weather"
-	_ "github.com/itsabot/twilio"
 )
+
+/*
+github.com/itsabot/plugin_weather
+{
+	"Name": "Weather",
+	"Maintainer": "Evan Tann <evan@itsabot.org>",
+	"AbotVersion": 0.2,
+	"Description": "Get weather reports for cities.",
+	"Icon": "https://cdn.rawgit.com/itsabot/plugin_weather/master/icon.svg",
+	"ID": 1
+}
+*/
