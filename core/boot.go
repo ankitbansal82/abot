@@ -140,6 +140,18 @@ func NewServer() (r *httprouter.Router, err error) {
 	} else {
 		log.Debug("no email drivers imported")
 	}
+	
+	// Open a connection to an messenger service
+	if len(messenger.Drivers()) > 0 {
+		drv := messenger.Drivers()[0]
+		messengerConn, err = messenger.Open(drv, r)
+		if err != nil {
+			log.Info("failed to open messenger driver connection", drv,
+				err)
+		}
+	} else {
+		log.Debug("no messenger drivers imported")
+	}
 
 	// Send any scheduled events on boot and every minute
 	evtChan := make(chan *dt.ScheduledEvent)
