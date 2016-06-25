@@ -3,5 +3,26 @@ package main
 
 import (
 	_ "github.com/itsabot/plugin_weather"
-	_ "github.com/itsabot/twilio"
+	_ "github.com/ankitbansal82/plugin_telegram"
 )
+
+/*
+github.com/itsabot/plugin_weather
+{
+	"Name": "Weather",
+	"Maintainer": "Evan Tann <evan@itsabot.org>",
+	"AbotVersion": 0.2,
+	"Description": "Get weather reports for cities.",
+	"Icon": "https://cdn.rawgit.com/itsabot/plugin_weather/master/icon.svg",
+	"ID": 1
+}
+github.com/ankitbansal82/plugin_telegram
+{
+	"Name": "Telegram",
+	"Maintainer": "Ankit Bansal <ankitbansal82@gmail.com>",
+	"AbotVersion": 0.2,
+	"Description": "Enable your Abot to send and receive messages via Telegram.",
+	"Icon": "https://telegram.org/img/t_logo.png",
+	"ID": 0
+}
+*/

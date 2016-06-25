@@ -19,6 +19,7 @@ import (
 	"github.com/itsabot/abot/shared/datatypes"
 	"github.com/itsabot/abot/shared/interface/email"
 	"github.com/itsabot/abot/shared/interface/sms"
+	"github.com/itsabot/abot/shared/interface/messenger"
 	"github.com/jbrukh/bayesian"
 	"github.com/jmoiron/sqlx"
 	"github.com/julienschmidt/httprouter"
@@ -30,6 +31,7 @@ var ner classifier
 var offensive map[string]struct{}
 var smsConn *sms.Conn
 var emailConn *email.Conn
+var messengerConn *messenger.Conn
 var conf = &PluginJSON{Dependencies: map[string]string{}}
 var pluginsGo = []dt.PluginConfig{}
 var envLoaded bool

@@ -72,8 +72,7 @@ func (c *Conn) Driver() driver.Driver {
 	return c.driver
 }
 
-// Send an SMS message through an opened driver connection. The from number is
-// handled by the driver.
+// Send an message through an opened driver connection.
 func (c *Conn) Send(chatID int, msg string) error {
-	return c.conn.Send(to, msg)
+	return c.conn.Send(chatID, msg)
 }
