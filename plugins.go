@@ -2,8 +2,8 @@
 package main
 
 import (
-	_ "github.com/itsabot/plugin_weather"
 	_ "github.com/ankitbansal82/plugin_telegram"
+	_ "github.com/itsabot/plugin_weather"
 )
 
 /*
